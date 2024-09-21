@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react"
+import React, { useEffect } from "react"
 import Navbar from "@/app/(components)/Navbar"
 import Sidebar from "@/app/(components)/Sidebar"
 import StoreProvider, { useAppSelector } from "./redux";
@@ -12,6 +12,14 @@ const DashboardLayout = ({ children} : { children: React.ReactNode }) => {
   );
 
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.add("light");
+    }
+  });
 
   return (
     <div className={`${isDarkMode ? "dark" : "light"} 
