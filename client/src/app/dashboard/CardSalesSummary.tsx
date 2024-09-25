@@ -15,7 +15,7 @@ const CardSalesSummary = () => {
     const { data, isLoading, isError } = useGetDashboardMetricsQuery();
     const salesData = data?.salesSummary || [];
 
-    const [timeframe, setTimeframe] = useState("monthly");
+    const [timeframe, setTimeframe] = useState("weekly");
     
     const totalValueSum = salesData.reduce((acc, curr) => acc + curr.totalValue, 0) || 0;
     
