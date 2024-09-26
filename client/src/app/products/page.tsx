@@ -4,6 +4,7 @@ import { useGetProductsQuery } from "@/state/api";
 import { PlusCircleIcon, SearchIcon } from "lucide-react";
 import { useState } from "react";
 import Header from "@/app/(components)/Header";
+import Rating from "@/app/(components)/Rating";
 
 const Products = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -52,6 +53,36 @@ const Products = () => {
                     <PlusCircleIcon className="w-5 h-5 mr-2 !text-gray-200" /> 
                     Create Product
                 </button>
+            </div>
+
+            {/* Body - Products list */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg-grid-cols-3 gap-10 justify-between">
+                {isLoading ? (
+                    <div>Loading...</div>
+                ) : (
+                    products?.map((product) => (
+                        <div
+                          key={product.productId}
+                          className="border shadow rounded-md p-4 max-w-full w-full mx-auto"
+                        >
+                            <div className="flex flex-col items-center">
+                                img
+                                <h3 className="text-lg text-gray-900 font-semibold">
+                                    {product.name}
+                                </h3>
+                                <p className="text-gray-800">${product.price.toFixed(2)}</p>
+                                <div className="text-sm text-gray-600 mt-1">
+                                    Stock: {product.stockQuantity}
+                                </div>
+                                {product.rating && (
+                                    <div className="flex items-center mt-2">
+                                        <Rating rating={product.rating} />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     )
