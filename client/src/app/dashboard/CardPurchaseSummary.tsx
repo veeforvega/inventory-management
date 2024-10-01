@@ -4,9 +4,7 @@ import numeral from 'numeral';
 import React from 'react'
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
-type Props = {}
-
-const CardPurchaseSummary = (props: Props) => {
+const CardPurchaseSummary = () => {
     const { data, isLoading } = useGetDashboardMetricsQuery();
     const purchaseData = data?.purchaseSummary || [];
     const lastDataPoint = purchaseData[purchaseData.length - 1] || null;
